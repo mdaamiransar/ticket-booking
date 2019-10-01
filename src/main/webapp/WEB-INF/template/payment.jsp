@@ -1,0 +1,195 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-cookies.js"></script>
+
+<div class="page-title-container">
+    <div class="container">
+        <div class="page-title pull-left">
+            <h2 class="entry-title">Bus Booking</h2>
+        </div>
+        <ul class="breadcrumbs pull-right">
+            <li><a href="#">HOME</a></li>
+            <li class="active">BUS Booking</li>
+        </ul>
+    </div>
+</div>
+<section id="content" class="gray-area">
+    <div class="container" ng-app="MyApp" ng-controller="MyController">
+        <div class="row">
+            <div id="main" class="col-sms-6 col-sm-8 col-md-9">
+                <div class="booking-section travelo-box">
+                    
+                    <form class="booking-form" method="post" action="http://www.soaptheme.net/html/travelo/booking-handler.php">
+                        <div class="person-information">
+                            <h2>Payment</h2>
+                            <%int i=1; %>
+                            <div class="row">
+                            	
+                            	<c:forEach items="${listSeat}" var="seat">
+                            	<div class="col-md-12 col-sm-12 col-xs-12">
+
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" href="#collapse_<%=i%>">Passenger <%=i%>| Seat : ${seat} </a>
+											</h4>
+										</div>
+										<div id="collapse_<%=i++%>" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div class="col-sm-6 form-group">
+													<label>Name</label> <input type="text" ng-model="user.name" class="form-control"
+														placeholder="Enter Name" name="name" required>
+												</div>
+				
+												<div class="col-sm-6 form-group">
+													<label>Age</label> <input type="text" ng-model="user.age" class="form-control"
+														placeholder="Enter Age" name="age" required>
+												</div>
+				
+												<div class="col-sm-6 form-group">
+													<label>Gender</label> <input type="text" ng-model="user.gender" class="form-control"
+														placeholder="Enter Gender" name="gender" required>
+												</div>
+												
+												<div class="col-sm-6 form-group">
+													<label>Seat</label> <input type="text" class="form-control"
+														placeholder="Enter Seat" name="seat" required>
+												</div>
+												
+												
+												
+				
+											</div>
+				
+										</div>
+									</div>
+				
+								</div>
+				
+							</div>
+                            	</c:forEach>
+                            	<input type="button" value="Add Person" ng-click="addItem()" />
+                            	<input type="button" value="Write Cookie" ng-click="WriteCookie()" />
+						        <input type="button" value="Read Cookie" ng-click="ReadCookie()" />
+						        <input type="button" value="Remove Cookie" ng-click="RemoveCookie()" />
+                            </div>
+                                                      
+                            
+                           
+                        </div>
+                        <hr />
+                        <div class="card-information">
+                            <h2>Contact Details</h2>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Email</label>
+	                                    <input type="text" class="form-control" value="" placeholder="" />
+	                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Phone</label>
+                                    <input type="text" class=form-control value="" placeholder="" />
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> By continuing, you agree to the <a href="#"><span class="skin-color">Terms and Conditions</span></a>.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-md-5">
+                                <button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar col-sms-6 col-sm-4 col-md-3">
+                <div class="booking-details travelo-box">
+                    <h4>Booking Details</h4>
+                    <article class="flight-booking-details">
+                        <figure class="clearfix">
+                            <!-- <a title="" href="flight-detailed.html" class="middle-block">
+                            <img class="middle-item" alt="" src="images/flight/thumbnail/1.png"></a> -->
+                            <div class="text-left">
+                                <h5 class="box-title">Kolkata to Digha</h5>
+                            </div>
+                        </figure><hr style="margin:0 0 0 0;">
+                        
+                        <!-- <div class="details">
+                            <div class="constant-column-3 timing clearfix">
+                                <div class="check-in">
+                                    <label>Take off</label>
+                                    <span>NOV 30, 2013<br />7:50 am</span>
+                                </div>
+                                <div class="duration text-center">
+                                    <i class="soap-icon-clock"></i>
+                                    <span>13h, 40m</span>
+                                </div>
+                                <div class="check-out">
+                                    <label>landing</label>
+                                    <span>Nov 13 2013<br />9:20 am</span>
+                                </div>
+                            </div>
+                        </div> -->
+                    
+                    </article>
+                    
+                    <h4>Other Details</h4>
+                    <dl class="other-details">
+                        <dt class="feature">Bus:</dt><dd class="value">Delta</dd>
+                        <dt class="feature">Bus type:</dt><dd class="value">Economy</dd>
+                        <dt class="feature">base fare:</dt><dd class="value">Rs. 320</dd>
+                        <dt class="feature">taxes and fees:</dt><dd class="value">Rs. 300</dd>
+                        <dt class="total-price">Total Price</dt><dd class="total-price-value">Rs. 620</dd>
+                    </dl>
+                </div>
+                
+                <div class="travelo-box contact-box">
+                    <h4>Need BusUncle Help?</h4>
+                    <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
+                    <address class="contact-details">
+                        <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                        <br>
+                        <a class="contact-email" href="#">help@.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    var app = angular.module('MyApp', ['ngCookies']);
+    app.controller('MyController', function ($scope, $window, $cookieStore) {
+    	
+    	 var user={name:"",age:"",gender:""};
+    	 var users=[];
+    	 $scope.user=user;
+
+        $scope.addItem = function () {
+            $scope.users.push($scope.user);
+            $cookieStore.put("Name", $scope.user);
+        } 
+        
+        $scope.WriteCookie = function () {
+            //$cookieStore.put("Name", $scope.Name);
+            $cookieStore.put("Name", products);
+        };
+        $scope.ReadCookie = function () {
+            $window.alert($cookieStore.get('Name'));
+        };
+        $scope.RemoveCookie = function () {
+            $cookieStore.remove('Name');
+        };
+    });
+</script>
